@@ -10,8 +10,6 @@
         endscript
         postrotate
                 [ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`
-				SERVICE="nginx"
-				DIRECTORY="/var/log/nginx/*.log.*"
-				/bin/bash /usr/local/bin/aws-useful/ec2/logrotate-to-s3/send-log-to-s3.sh $SERVICE $DIRECTORY
+                /bin/bash /usr/local/bin/aws-useful/ec2/logrotate-to-s3/send-log-to-s3.sh nginx "/var/log/nginx/*.log-*"
         endscript
 }
